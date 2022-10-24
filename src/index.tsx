@@ -1,16 +1,11 @@
-import React from 'react';
-// import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
-import { QueryClientProvider, QueryClient } from 'react-query';
-import { Global } from '@emotion/react';
-import { ThemeProvider } from '@emotion/react';
+import { Global, ThemeProvider } from '@emotion/react';
 import ReactDOM from 'react-dom';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { RecoilRoot } from 'recoil';
 import App from './App';
 import GlobalStyle from 'styles/globalStyle';
 import theme from 'styles/theme';
 
-// const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 const queryClient = new QueryClient();
 
 ReactDOM.render(
