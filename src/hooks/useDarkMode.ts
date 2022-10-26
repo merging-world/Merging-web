@@ -33,5 +33,5 @@ export const useDarkMode = () => {
     }
   }, []);
 
-  return { theme, toggleTheme };
+  return { theme, toggleTheme, isDarkMode: theme.colors === darkTheme };
 };

@@ -1,8 +1,11 @@
 import { css } from '@emotion/react';
 import { MEDIA_QUERY_END_POINT } from 'constants/index';
 
-const GlobalStyle = css`
-  html,
+const GlobalStyle = (theme: any) => css`
+  html {
+    background-color: ${theme.colors.BACKGROUND};
+  }
+  ,
   body,
   div,
   span,

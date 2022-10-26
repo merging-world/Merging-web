@@ -1,21 +1,21 @@
-import { Global, ThemeProvider } from '@emotion/react';
-import ReactDOM from 'react-dom';
+import { ThemeProvider } from '@emotion/react';
+import React from 'react';
+import * as ReactDOM from 'react-dom/client';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { RecoilRoot } from 'recoil';
 import App from './App';
-import GlobalStyle from 'styles/globalStyle';
 import theme from 'styles/theme';
 
 const queryClient = new QueryClient();
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root')!);
+root.render(
   <RecoilRoot>
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <App />
-        <Global styles={GlobalStyle} />
-      </ThemeProvider>
+      {/* TODO: 질문하기 */}
+      {/*<ThemeProvider theme={theme}>*/}
+      <App />
+      {/*</ThemeProvider>*/}
     </QueryClientProvider>
   </RecoilRoot>,
-  document.getElementById('root'),
 );

@@ -4,34 +4,36 @@ export const darkTheme = {
   PRIMARY: '#55DB82',
   SECONDARY: '# 38393D',
   PIN: '#F5FF80',
-  BACKGROUND: '#F8FAF9',
+  BACKGROUND: '#161817',
+  BACKGROUND_SECONDARY: '#242625',
   ALERT: '#FF7575',
   TEXT_HIGH: `#38393D`,
   TEXT_MEDIUM: '#808186',
-  GRAY_0: '#EFEFEF',
-  GRAY_1: '#BABFC0',
-  GRAY_2: '#979A99',
-  GRAY_3: '#878C8A',
-  GRAY_4: '#464949',
-  GRAY_5: '#1F2120',
+  GRAY_1: '#464949',
+  GRAY_2: '#878C8A',
+  GRAY_3: '#A1A5A3',
+  GRAY_4: '#BABFC0',
+  GRAY_5: '#EFEFEF',
+  SHADOW: '#272C2866',
 };
 
 export type ColorTheme = typeof darkTheme;
 
 export const lightTheme: ColorTheme = {
   PRIMARY: '#55DB82',
-  SECONDARY: '# 38393D',
+  SECONDARY: '#38393D',
   PIN: '#F5FF80',
-  BACKGROUND: '#F8FAF9',
+  BACKGROUND: '#FCFDFC',
+  BACKGROUND_SECONDARY: '#FFFFFF',
   ALERT: '#FF7575',
   TEXT_HIGH: `#38393D`,
   TEXT_MEDIUM: '#808186',
-  GRAY_0: '#EFEFEF',
-  GRAY_1: '#BABFC0',
-  GRAY_2: '#979A99',
-  GRAY_3: '#878C8A',
-  GRAY_4: '#464949',
-  GRAY_5: '#1F2120',
+  GRAY_1: '#EFEFEF',
+  GRAY_2: '#BABFC0',
+  GRAY_3: '#A1A5A3',
+  GRAY_4: '#878C8A',
+  GRAY_5: '#464949',
+  SHADOW: '#B0D6B333',
 };
 
 export type Theme = typeof lightTheme;
@@ -64,7 +66,7 @@ export const fontSize = {
 export const breakPoint = {
   small: `@media (max-width: ${MEDIA_QUERY_END_POINT.SMALL})`,
   medium: `@media (min-width: 769px) and (max-width: ${MEDIA_QUERY_END_POINT.MEDIUM})`,
-  large: `@media (min-width: 1081px) and (max-width: ${MEDIA_QUERY_END_POINT.LARGE})`,
+  large: `@media (min-width: 1041px) and (max-width: ${MEDIA_QUERY_END_POINT.LARGE})`,
   xLarge: `@media (min-width: ${MEDIA_QUERY_END_POINT.LARGE})`,
 };
 

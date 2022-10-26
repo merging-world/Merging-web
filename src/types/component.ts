@@ -14,3 +14,9 @@ export interface Component {
   updatedAt: string;
   variable: string;
 }
+
+export interface Icon {
+  color: string;
+  width?: number;
+  height?: number;
+}
