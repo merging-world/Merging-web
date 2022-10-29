@@ -6,6 +6,7 @@ export const MEDIA_QUERY_END_POINT = {
   X_LARGE: '1920px',
 };
 
-export const API_ENDPOINT = 'https://api.merging.world';
+// TODO: .env로 빼는게 더 좋을 것 같습니다!
+// export const API_ENDPOINT = 'https://api.merging.world';
 
-// export const API_ENDPOINT = 'http://localhost:3065';
+export const API_ENDPOINT = 'http://localhost:3000';

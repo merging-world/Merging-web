@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { useRecoilState } from 'recoil';
+import { authState } from '../atoms/auth';
 import { API_ENDPOINT } from 'constants/index';
 import { Component } from 'types/component';
 // import { Template } from 'types/template';
@@ -27,4 +29,17 @@ export const likeComponent = async (id: number) => {
 
 export const likeTemplate = async (id: number) => {
   await axios.put(`${API_ENDPOINT}/template/update/${id}`);
+};
+
+export const checkAndRegister = async (token: string) => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/user`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
 };
