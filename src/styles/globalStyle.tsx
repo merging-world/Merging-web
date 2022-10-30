@@ -5,7 +5,6 @@ const GlobalStyle = (theme: any) => css`
   html {
     background-color: ${theme.colors.BACKGROUND};
   }
-  ,
   body,
   div,
   span,
@@ -90,6 +89,7 @@ const GlobalStyle = (theme: any) => css`
     padding: 0;
     border: 0;
     font-size: 100%;
+    font: inherit;
     vertical-align: baseline;
   }
   /* HTML5 display-role reset for older browsers */

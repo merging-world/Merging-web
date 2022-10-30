@@ -16,7 +16,7 @@ import { firebaseAuth } from 'constants/firebase';
 import { useDarkMode } from 'hooks/useDarkMode';
 import { checkAndRegister } from 'utils/apis';
 
-export const Navbar = () => {
+const Navbar = () => {
   const { theme, toggleTheme, isDarkMode } = useDarkMode();
   const [auth, setAuth] = useRecoilState(authState);
   const [open, setOpen] = useState(false);
@@ -209,6 +209,8 @@ export const Navbar = () => {
     </>
   );
 };
+
+export default Navbar;
 
 const Logo = styled.div`
   .mobile {

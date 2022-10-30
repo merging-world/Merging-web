@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import { CreatePost } from 'components/createPost';
-import { Navbar } from 'components/navbar';
-import { PopularPosts } from 'components/popularPosts';
+import { CreatePost, Navbar, PopularPosts } from 'components/common';
 import { useDarkMode } from 'hooks/useDarkMode';
 
 const Home = () => {
