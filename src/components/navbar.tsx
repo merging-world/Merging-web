@@ -2,15 +2,17 @@ import styled from '@emotion/styled';
 import { signInWithPopup, GithubAuthProvider } from 'firebase/auth';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import AlarmIcon from '../assets/icons/AlarmIcon';
-import CommunityIcon from '../assets/icons/CommunityIcon';
-import GithubIcon from '../assets/icons/GithubIcon';
-import MarketIcon from '../assets/icons/MarketIcon';
-import PencilIcon from '../assets/icons/PencilIcon';
-import SearchIcon from '../assets/icons/SearchIcon';
-import SettingIcon from '../assets/icons/SettingIcon';
-import { authState } from '../atoms/auth';
-import { firebaseAuth } from '../firebase';
+import {
+  AlarmIcon,
+  CommunityIcon,
+  GithubIcon,
+  MarketIcon,
+  PencilIcon,
+  SearchIcon,
+  SettingIcon,
+} from 'assets/icons';
+import { authState } from 'atoms/auth';
+import { firebaseAuth } from 'constants/firebase';
 import { useDarkMode } from 'hooks/useDarkMode';
 import { checkAndRegister } from 'utils/apis';
 
