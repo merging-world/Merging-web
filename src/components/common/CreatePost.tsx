@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { ProfileCircle } from 'components/common/Navbar';
 import Card from 'components/layouts/Card';
+import Profile from 'components/layouts/Profile';
 import { useDarkMode } from 'hooks/useDarkMode';
 
 const CreatePost = () => {
@@ -9,7 +9,7 @@ const CreatePost = () => {
   return (
     <Card>
       <Wrap>
-        <ProfileCircle theme={theme} alt="profile" src="https://github.com/Park-Wonbin.png" />
+        <Profile info="profile" url="https://github.com/Park-Wonbin.png" />
         <CreatePostTitle theme={theme}>어떤 개발 이야기를 공유하고 싶나요?</CreatePostTitle>
       </Wrap>
     </Card>

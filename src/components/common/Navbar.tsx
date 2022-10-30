@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { signInWithPopup, GithubAuthProvider } from 'firebase/auth';
-import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import {
   AlarmIcon,
@@ -11,7 +10,11 @@ import {
   SearchIcon,
   SettingIcon,
 } from 'assets/icons';
+import { modalStates } from 'atoms';
 import { authState } from 'atoms/auth';
+import LoginModalContents from 'components/common/modal/LoginModalContents';
+import Modal from 'components/common/modal/Modal';
+import Profile from 'components/layouts/Profile';
 import { firebaseAuth } from 'constants/firebase';
 import { useDarkMode } from 'hooks/useDarkMode';
 import { checkAndRegister } from 'utils/apis';
@@ -19,7 +22,7 @@ import { checkAndRegister } from 'utils/apis';
 const Navbar = () => {
   const { theme, toggleTheme, isDarkMode } = useDarkMode();
   const [auth, setAuth] = useRecoilState(authState);
-  const [open, setOpen] = useState(false);
+  const [isModal, setIsModal] = useRecoilState(modalStates);
 
   //TODO : Hook
   const login = () => {
@@ -57,96 +60,33 @@ const Navbar = () => {
 
   return (
     <>
-      {open && (
-        <Modal onClick={() => setOpen(false)}>
-          <SignUpModal theme={theme}>
-            <div>
-              <div>
+      {isModal.status && (
+        <Modal>
+          <LoginModalContents clickBtn={login} />
+        </Modal>
+      )}
+      {/* TODO : 로그인 모달 처리 */}
+      {auth.user != null && auth.user.nickname == null && <Modal>{/* 로그인모달 */}</Modal>}
+      <Container>
+        <Wrap>
+          <NavContentsLeft>
+            <Logo theme={theme} onClick={() => (window.location.href = '/')}>
+              <li>
                 <img
+                  className="desktop"
                   alt="merging"
                   src={isDarkMode ? '/assets/logo-dark.svg' : '/assets/logo-light.svg'}
-                  style={{ height: '20px', marginBottom: '16px' }}
+                  style={{ height: '20px', marginRight: '32px' }}
                 />
-                <p>
-                  머징에 오신 것을 환영해요
-                  <br />
-                  깃허브를 통해 로그인해주세요
-                </p>
-              </div>
-              <div>
-                <div
-                  style={{
-                    padding: '16px 0',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    fontSize: theme.fontSize.FONT_BODY2,
-                    color: theme.colors.TEXT_HIGH,
-                  }}
-                >
-                  <div style={{ flexGrow: 1 }}>이용약관 및 개인정보처리방침 동의</div>
-                  <a
-                    href="https://poapper.com"
-                    style={{ textDecoration: 'underline', color: theme.colors.TEXT_HIGH }}
-                  >
-                    보기
-                  </a>
-                </div>
-                <Button theme={theme} style={{ background: theme.colors.GRAY_5 }} onClick={login}>
-                  <GithubIcon color={theme.colors.BACKGROUND_SECONDARY} width={20} height={20} />
-                  Log in with Github
-                </Button>
-              </div>
-            </div>
-          </SignUpModal>
-        </Modal>
-      )}
-      {auth.user != null && auth.user.nickname == null && (
-        <Modal>
-          <SignUpModal theme={theme}>
-            <p>
-              회원가입
-              <br />
-              깃허브를 통해 로그인해주세요
-            </p>
-          </SignUpModal>
-        </Modal>
-      )}
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          background: `${theme.colors.BACKGROUND_SECONDARY}AA`,
-          width: '100%',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-        }}
-      >
-        <div
-          style={{
-            margin: '0 auto',
-            maxWidth: '1040px',
-            height: '64px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', padding: '0 16px' }}>
-            {/* Logo */}
-            <Logo theme={theme} onClick={() => (window.location.href = '/')}>
-              <img
-                className="desktop"
-                alt="merging"
-                src={isDarkMode ? '/assets/logo-dark.svg' : '/assets/logo-light.svg'}
-                style={{ height: '20px', marginRight: '32px' }}
-              />
-              <img
-                className="mobile"
-                alt="merging"
-                src={'/assets/icon.svg'}
-                style={{ height: '20px', marginRight: '32px' }}
-              />
+              </li>
+              <li>
+                <img
+                  className="mobile"
+                  alt="merging"
+                  src={'/assets/icon.svg'}
+                  style={{ height: '20px', marginRight: '32px' }}
+                />
+              </li>
             </Logo>
             {/* Search Bar */}
             <SearchBar theme={theme}>
@@ -162,8 +102,8 @@ const Navbar = () => {
               <MarketIcon color={theme.colors.GRAY_2} width={20} height={20} />
               <p>마켓</p>
             </TabButton>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', padding: '0 16px' }}>
+          </NavContentsLeft>
+          <NavContentsRight>
             {/* Icon Buttons */}
             <SearchIconButton theme={theme}>
               <SearchIcon color={theme.colors.GRAY_2} width={24} height={24} />
@@ -184,31 +124,62 @@ const Navbar = () => {
                 <IconButton>
                   <AlarmIcon color={theme.colors.GRAY_2} width={24} height={24} />
                 </IconButton>
-                <ProfileCircle
-                  alt="profile"
-                  src={`https://github.com/${auth.user?.githubName}.png`}
-                  onClick={() => {
+                <Profile
+                  info="profile"
+                  url={`https://github.com/${auth.user?.githubName}.png`}
+                  clickProfile={() => {
                     console.log(auth.accessToken);
                   }}
                 />
               </>
             ) : (
               <>
-                <LoginButton theme={theme} onClick={() => setOpen(true)}>
+                <LoginButton
+                  theme={theme}
+                  onClick={() => setIsModal({ type: 'open', status: true })}
+                >
                   로그인
                 </LoginButton>
               </>
             )}
-          </div>
-        </div>
-      </div>
+          </NavContentsRight>
+        </Wrap>
+      </Container>
     </>
   );
 };
 
-export default Navbar;
+const Container = styled.header`
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: ${props => props.theme.colors.BACKGROUND_SECONDARY};
+  backdrop-filter: blur(20px);
+  webkitbackdropfilter: blur(20px);
+`;
 
-const Logo = styled.div`
+const Wrap = styled.ul`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1040px;
+  height: 64px;
+  margin: 0 auto;
+`;
+
+const NavContentsLeft = styled.ul`
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+`;
+
+const NavContentsRight = styled.ul`
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+`;
+
+const Logo = styled.ul`
   .mobile {
     display: none;
     ${props => props.theme.breakPoint.small} {
@@ -226,7 +197,7 @@ const Logo = styled.div`
   }
 `;
 
-const LoginButton = styled.div`
+const LoginButton = styled.li`
   width: 100px;
   height: 34px;
   border-radius: 10px;
@@ -241,7 +212,7 @@ const LoginButton = styled.div`
   }
 `;
 
-const TabButton = styled.div`
+const TabButton = styled.li`
   display: flex;
   align-items: center;
   color: ${props => props.color};
@@ -258,14 +229,14 @@ const TabButton = styled.div`
   }
 `;
 
-const IconButton = styled.div`
+const IconButton = styled.li`
   margin-right: 16px;
   &:hover {
     cursor: pointer;
   }
 `;
 
-const SearchIconButton = styled.div`
+const SearchIconButton = styled.li`
   margin-right: 16px;
   &:hover {
     cursor: pointer;
@@ -278,7 +249,7 @@ const SearchIconButton = styled.div`
   }
 `;
 
-const SearchBar = styled.div`
+const SearchBar = styled.li`
   width: 300px;
   height: 34px;
   border-radius: 17px;
@@ -304,66 +275,4 @@ const SearchBar = styled.div`
   }
 `;
 
-export const ProfileCircle = styled.img`
-  width: 34px;
-  height: 34px;
-  object-fit: cover;
-  border-radius: 17px;
-`;
-
-export const Modal = styled.div`
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-`;
-
-const SignUpModal = styled.div`
-  width: 100%;
-  max-width: 500px;
-  min-height: 400px;
-  border-radius: 20px;
-  background-color: ${props => props.theme.colors.BACKGROUND_SECONDARY};
-  margin: 32px;
-  > div {
-    height: calc(100% - 64px);
-    align-items: start;
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  > div > div {
-    width: 100%;
-  }
-  > div > div > p {
-    color: ${props => props.theme.colors.TEXT_HIGH};
-    font-size: ${props => props.theme.fontSize.FONT_H2};
-    font-weight: bold;
-    line-height: 1.5em;
-  }
-`;
-
-const Button = styled.div`
-  width: 100%;
-  height: 52px;
-  border-radius: 14px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  color: ${props => props.theme.colors.BACKGROUND_SECONDARY};
-  font-size: ${props => props.theme.fontSize.FONT_BODY1};
-  &:hover {
-    cursor: pointer;
-  }
-  gap: 8px;
-`;
+export default Navbar;
