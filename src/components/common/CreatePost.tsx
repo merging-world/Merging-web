@@ -10,7 +10,7 @@ const CreatePost = () => {
     <Card>
       <Wrap>
         <ProfileCircle theme={theme} alt="profile" src="https://github.com/Park-Wonbin.png" />
-        <CreatePostHint theme={theme}>어떤 개발 이야기를 공유하고 싶나요?</CreatePostHint>
+        <CreatePostTitle theme={theme}>어떤 개발 이야기를 공유하고 싶나요?</CreatePostTitle>
       </Wrap>
     </Card>
   );
@@ -21,7 +21,7 @@ const Wrap = styled.div`
   align-items: center;
 `;
 
-const CreatePostHint = styled.h2`
+const CreatePostTitle = styled.h3`
   margin-left: 8px;
   color: ${props => props.theme.colors.TEXT_HIGH};
   font-size: ${props => props.theme.fontSize.FONT_BODY1};

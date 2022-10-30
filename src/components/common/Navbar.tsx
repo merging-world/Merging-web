@@ -21,15 +21,15 @@ const Navbar = () => {
   const [auth, setAuth] = useRecoilState(authState);
   const [open, setOpen] = useState(false);
 
+  //TODO : Hook
   const login = () => {
     signInWithPopup(firebaseAuth, new GithubAuthProvider())
       .then(async result => {
         const { user } = result;
         const accessToken = await user.getIdToken();
         const res = await checkAndRegister(accessToken);
-        if (res) {
-          if (res.nickname) {
-            setAuth({
+        res.nickname
+          ? setAuth({
               accessToken: accessToken,
               isValid: true,
               user: {
@@ -37,10 +37,8 @@ const Navbar = () => {
                 nickname: res.nickname,
                 githubName: res.githubName,
               },
-            });
-          } else {
-            // 첫 로그인
-            setAuth({
+            })
+          : setAuth({
               accessToken: accessToken,
               isValid: false,
               user: {
@@ -49,8 +47,6 @@ const Navbar = () => {
                 githubName: res.githubName,
               },
             });
-          }
-        }
       })
       .catch(error => {
         const errorCode = error.code;
