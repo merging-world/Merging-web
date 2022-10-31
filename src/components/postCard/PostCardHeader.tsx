@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
+import MoreCircleIcon from 'assets/icons/MoreCircleIcon';
 import Profile from 'components/layouts/Profile';
+import { useDarkMode } from 'hooks/useDarkMode';
 
 const PostCardHeader = () => {
+  const { theme } = useDarkMode();
+
   return (
     <Wrap>
       <ProfileWrap>
@@ -13,7 +17,9 @@ const PostCardHeader = () => {
           <TimeLog>10분전</TimeLog>
         </ProfileTextWrap>
       </ProfileWrap>
-      <li>3개점</li>
+      <li>
+        <MoreCircleIcon width={24} height={24} color={theme.colors.GRAY_2} />
+      </li>
     </Wrap>
   );
 };
