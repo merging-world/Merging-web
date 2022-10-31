@@ -9,10 +9,10 @@ import { breakPoint, darkTheme, fontSize } from 'styles/theme';
 //   default: [],
 // });
 
-// export const modalStates = atom({
-//   key: `modalState${uuid()}`,
-//   default: [false, false],
-// });
+export const modalStates = atom({
+  key: `modalState${uuid()}`,
+  default: { type: 'closed', status: false },
+});
 
 export const darkModeState = atom({
   key: `darkModeState${uuid()}`,
