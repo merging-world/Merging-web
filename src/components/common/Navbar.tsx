@@ -155,7 +155,7 @@ const Container = styled.header`
   top: 0;
   background-color: ${props => props.theme.colors.BACKGROUND_SECONDARY};
   backdrop-filter: blur(20px);
-  webkitbackdropfilter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 `;
 
 const Wrap = styled.ul`
