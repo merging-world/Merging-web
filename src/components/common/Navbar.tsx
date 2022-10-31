@@ -153,7 +153,7 @@ const Container = styled.header`
   position: fixed;
   width: 100%;
   top: 0;
-  background-color: ${props => props.theme.colors.BACKGROUND_SECONDARY};
+  background-color: ${props => props.theme.colors.BACKGROUND_SECONDARY}AA;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 `;
