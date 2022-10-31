@@ -31,12 +31,11 @@ const ProfileWrap = styled.ul`
 `;
 
 const ProfileTextWrap = styled.ul`
-  display: flex;
-  flex-direction: column;
   margin-left: 8px;
 `;
 
 const Nickname = styled.li`
+  margin-bottom: 6px;
   font-size: ${props => props.theme.fontSize.FONT_BODY2};
   color: ${props => props.theme.colors.TEXT_HIGH};
 `;
