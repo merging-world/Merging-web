@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
+// TODO : index 절대경로 추가
+import PostCardArticle from 'components/postCard/PostCardArticle';
 import PostCardHeader from 'components/postCard/PostCardHeader';
 
 const PostCardContainer = () => {
   return (
     <Container>
       <PostCardHeader />
-      <article>
-        게시글 내용
-        <ul>테그</ul>
-      </article>
+      <PostCardArticle />
+
       <article>이미지</article>
       <ul>좋아요 및 북마크</ul>
     </Container>
