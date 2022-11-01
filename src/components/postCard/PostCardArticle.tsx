@@ -1,21 +1,24 @@
 import styled from '@emotion/styled';
-import React from 'react';
+import PostCardTag from 'components/postCard/PostCardTag';
 
-const PostCardArticle = () => {
+interface PostCardArticleProps {
+  title: string;
+  description: string;
+  tags: [string];
+}
+
+const PostCardArticle = ({ title, description, tags }: PostCardArticleProps) => {
   return (
     <Wrap>
-      <Title>게시글 제목</Title>
-      <ContentsText>
-        무야호무야호무야호무야호무야호무야호무야호무야호무야호무야호무야호무야호무야호 무야호 무야호
-        무야호 무야호
-      </ContentsText>
-      <ul>테그</ul>
+      <Title>{title}</Title>
+      <ContentsText>{description}</ContentsText>
+      <PostCardTag tags={tags} />
     </Wrap>
   );
 };
 
 const Wrap = styled.section`
-  margin: 7px 0 16px 0;
+  margin: 10px 0 16px 0;
 `;
 
 const Title = styled.h2`
@@ -25,7 +28,9 @@ const Title = styled.h2`
 `;
 
 const ContentsText = styled.article`
-  font-size: ${props => props.theme.fontSize.FONT_BODY1};
+  margin-bottom: 8px;
+  font-size: ${props => props.theme.fontSize.FONT_BODY2};
+  line-height: 21px;
   color: ${props => props.theme.colors.TEXT_MEDIUM};
 `;
 

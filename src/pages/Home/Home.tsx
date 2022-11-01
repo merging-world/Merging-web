@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import React from 'react';
 import { CreatePost, Navbar, PopularPosts } from 'components/common';
 import PostCardContainer from 'components/postCard/PostCardContainer';
 import { useDarkMode } from 'hooks/useDarkMode';
@@ -14,7 +13,7 @@ const Home = () => {
         <div style={{ display: 'flex', padding: '0 16px', gap: '16px' }}>
           <MainSection theme={theme}>
             <CreatePost />
-            <PostCardContainer />
+            <PostCardContainer />;
           </MainSection>
           <SideSection theme={theme}>
             <PopularPosts />

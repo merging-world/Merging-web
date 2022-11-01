@@ -3,18 +3,24 @@ import MoreCircleIcon from 'assets/icons/MoreCircleIcon';
 import Profile from 'components/layouts/Profile';
 import { useDarkMode } from 'hooks/useDarkMode';
 
-const PostCardHeader = () => {
-  const { theme } = useDarkMode();
+interface PostCardHeaderProps {
+  author: string;
+  createdAt: string;
+  url: string;
+}
 
+const PostCardHeader = ({ author, createdAt, url }: PostCardHeaderProps) => {
+  const { theme } = useDarkMode();
+  console.log('url', url);
   return (
     <Wrap>
       <ProfileWrap>
         <li>
-          <Profile info="profile" url="https://github.com/Park-Wonbin.png" />
+          <Profile info="profile" url={url} />
         </li>
         <ProfileTextWrap>
-          <Nickname>닉네임</Nickname>
-          <TimeLog>10분전</TimeLog>
+          <Nickname>{author}</Nickname>
+          <TimeLog>{createdAt}</TimeLog>
         </ProfileTextWrap>
       </ProfileWrap>
       <li>
