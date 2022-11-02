@@ -1,13 +1,55 @@
 import styled from '@emotion/styled';
-import { GithubIcon } from 'assets/icons';
+import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
+import { useRecoilState } from 'recoil';
+import { checkBoxStates } from '../../../atoms';
+import { authState } from '../../../atoms/auth';
+import { CheckRectangleIcon, GithubIcon } from 'assets/icons';
+import { firebaseAuth } from 'constants/firebase';
 import { useDarkMode } from 'hooks/useDarkMode';
+import { checkAndRegister } from 'utils/apis';
 
 interface LoginModalContentsProps {
-  clickBtn?: () => void;
+  closed: () => void;
 }
 
-const LoginModalContents = ({ clickBtn }: LoginModalContentsProps) => {
+const LoginModalContents = ({ closed }: LoginModalContentsProps) => {
   const { theme, isDarkMode } = useDarkMode();
+  const [checked, setIsChecked] = useRecoilState(checkBoxStates);
+  const [auth, setAuth] = useRecoilState(authState);
+
+  const login = () => {
+    signInWithPopup(firebaseAuth, new GithubAuthProvider())
+      .then(async result => {
+        const { user } = result;
+        const accessToken = await user.getIdToken();
+        const res = await checkAndRegister(accessToken);
+        res.nickname
+          ? setAuth({
+              accessToken: accessToken,
+              isValid: true,
+              user: {
+                uuid: res.uuid,
+                nickname: res.nickname,
+                githubName: res.githubName,
+              },
+            })
+          : setAuth({
+              accessToken: accessToken,
+              isValid: false,
+              user: {
+                uuid: res.uuid,
+                nickname: null,
+                githubName: res.githubName,
+              },
+            });
+        closed();
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
 
   return (
     <SignUpModal theme={theme}>
@@ -35,7 +77,19 @@ const LoginModalContents = ({ clickBtn }: LoginModalContentsProps) => {
               color: theme.colors.TEXT_HIGH,
             }}
           >
-            <div style={{ flexGrow: 1 }}>이용약관 및 개인정보처리방침 동의</div>
+            <AgreeBox
+              onClick={() => {
+                if (checked.status) setIsChecked({ type: 'unchecked', status: false });
+                else setIsChecked({ type: 'checked', status: true });
+              }}
+            >
+              <CheckRectangleIcon
+                color={checked.status ? theme.colors.PRIMARY : theme.colors.GRAY_2}
+                width={20}
+                height={20}
+              />
+              <div>이용약관 및 개인정보처리방침 동의</div>
+            </AgreeBox>
             <a
               href="https://poapper.com"
               style={{ textDecoration: 'underline', color: theme.colors.TEXT_HIGH }}
@@ -43,7 +97,13 @@ const LoginModalContents = ({ clickBtn }: LoginModalContentsProps) => {
               보기
             </a>
           </div>
-          <Button theme={theme} style={{ background: theme.colors.GRAY_5 }} onClick={clickBtn}>
+          <Button
+            theme={theme}
+            style={{ background: checked.status ? theme.colors.GRAY_5 : theme.colors.GRAY_2 }}
+            onClick={() => {
+              if (checked.status) login();
+            }}
+          >
             <GithubIcon color={theme.colors.BACKGROUND_SECONDARY} width={20} height={20} />
             Log in with Github
           </Button>
@@ -94,4 +154,12 @@ const Button = styled.div`
   gap: 8px;
 `;
 
+const AgreeBox = styled.div`
+  align-items: center;
+  display: flex;
+  &:hover {
+    cursor: pointer;
+  }
+  gap: 8px;
+`;
 export default LoginModalContents;

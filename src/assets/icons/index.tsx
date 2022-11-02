@@ -8,3 +8,6 @@ export { default as BookMarkIcon } from './BookMarkIcon';
 export { default as HeartIcon } from './HeartIcon';
 export { default as CommentIcon } from './CommentIcon';
 export { default as SettingIcon } from './SettingIcon';
+export { default as CheckRectangleIcon } from './CheckRectangleIcon';
+export { default as InformationIcon } from './InformationIcon';
+export { default as ImageIcon } from './ImageIcon';

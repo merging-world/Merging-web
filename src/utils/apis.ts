@@ -43,3 +43,70 @@ export const checkAndRegister = async (token: string) => {
     console.log(e);
   }
 };
+
+export const nicknameCheck = async (token: string, nickname: string) => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/user/check?nickname=${nickname}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const updateNickname = async (token: string, nickname: string) => {
+  try {
+    const res = await axios.patch(
+      `${API_ENDPOINT}/user/nickname`,
+      {
+        nickname: nickname,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getCurrentSeason = async () => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/tree/season`);
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getMyCurrentTree = async (token: string) => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/tree`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getCommits = async (token: string) => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/commit`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};

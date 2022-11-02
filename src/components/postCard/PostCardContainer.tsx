@@ -17,7 +17,6 @@ const PostCardsWrap = styled.section`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 16px;
 `;
 
 export default PostCardContainer;
