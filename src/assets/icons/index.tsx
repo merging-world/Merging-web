@@ -4,4 +4,7 @@ export { default as GithubIcon } from './GithubIcon';
 export { default as MarketIcon } from './MarketIcon';
 export { default as PencilIcon } from './PencilIcon';
 export { default as SearchIcon } from './SearchIcon';
+export { default as BookMarkIcon } from './BookMarkIcon';
+export { default as HeartIcon } from './HeartIcon';
+export { default as CommentIcon } from './CommentIcon';
 export { default as SettingIcon } from './SettingIcon';

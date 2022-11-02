@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import React from 'react';
 import { CreatePost, Navbar, PopularPosts } from 'components/common';
+import PostCardContainer from 'components/postCard/PostCardContainer';
 import { useDarkMode } from 'hooks/useDarkMode';
 
 const Home = () => {
@@ -13,6 +13,7 @@ const Home = () => {
         <div style={{ display: 'flex', padding: '0 16px', gap: '16px' }}>
           <MainSection theme={theme}>
             <CreatePost />
+            <PostCardContainer />;
           </MainSection>
           <SideSection theme={theme}>
             <PopularPosts />
@@ -26,11 +27,11 @@ const Home = () => {
 
 export default Home;
 
-const MainSection = styled.div`
+const MainSection = styled.section`
   flex-grow: 6;
 `;
 
-const SideSection = styled.div`
+const SideSection = styled.aside`
   flex-grow: 4;
   ${props => props.theme.breakPoint.small} {
     display: none;
