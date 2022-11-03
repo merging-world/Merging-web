@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRecoilState } from 'recoil';
-import { checkBoxStates } from '../../../atoms';
-import { authState } from '../../../atoms/auth';
 import { CheckRectangleIcon, GithubIcon } from 'assets/icons';
+import { authState } from 'atoms/auth';
+import { checkBoxStates } from 'atoms/index';
 import { firebaseAuth } from 'constants/firebase';
 import { useDarkMode } from 'hooks/useDarkMode';
 import { checkAndRegister } from 'utils/apis';
@@ -53,30 +53,21 @@ const LoginModalContents = ({ closed }: LoginModalContentsProps) => {
 
   return (
     <SignUpModal theme={theme}>
-      <div>
-        <div>
+      <ModalLayout>
+        <ModalContent>
           <img
             alt="merging"
             src={isDarkMode ? '/assets/logo-dark.svg' : '/assets/logo-light.svg'}
             style={{ height: '20px', marginBottom: '16px' }}
           />
-          <p>
+          <ContentTitle>
             머징에 오신 것을 환영해요
             <br />
             깃허브를 통해 로그인해주세요
-          </p>
-        </div>
-        <div>
-          <div
-            style={{
-              padding: '16px 0',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              fontSize: theme.fontSize.FONT_BODY2,
-              color: theme.colors.TEXT_HIGH,
-            }}
-          >
+          </ContentTitle>
+        </ModalContent>
+        <ModalContent>
+          <TermWrap theme={theme}>
             <AgreeBox
               onClick={() => {
                 if (checked.status) setIsChecked({ type: 'unchecked', status: false });
@@ -88,15 +79,12 @@ const LoginModalContents = ({ closed }: LoginModalContentsProps) => {
                 width={20}
                 height={20}
               />
-              <div>이용약관 및 개인정보처리방침 동의</div>
+              <p>이용약관 및 개인정보처리방침 동의</p>
             </AgreeBox>
-            <a
-              href="https://poapper.com"
-              style={{ textDecoration: 'underline', color: theme.colors.TEXT_HIGH }}
-            >
+            <Term theme={theme} href="https://poapper.com">
               보기
-            </a>
-          </div>
+            </Term>
+          </TermWrap>
           <Button
             theme={theme}
             style={{ background: checked.status ? theme.colors.GRAY_5 : theme.colors.GRAY_2 }}
@@ -107,8 +95,8 @@ const LoginModalContents = ({ closed }: LoginModalContentsProps) => {
             <GithubIcon color={theme.colors.BACKGROUND_SECONDARY} width={20} height={20} />
             Log in with Github
           </Button>
-        </div>
-      </div>
+        </ModalContent>
+      </ModalLayout>
     </SignUpModal>
   );
 };
@@ -120,23 +108,26 @@ const SignUpModal = styled.ul`
   border-radius: 20px;
   background-color: ${props => props.theme.colors.BACKGROUND_SECONDARY};
   margin: 32px;
-  > div {
-    height: calc(100% - 64px);
-    align-items: start;
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  > div > div {
-    width: 100%;
-  }
-  > div > div > p {
-    color: ${props => props.theme.colors.TEXT_HIGH};
-    font-size: ${props => props.theme.fontSize.FONT_H2};
-    font-weight: bold;
-    line-height: 1.5em;
-  }
+`;
+
+const ModalLayout = styled.ul`
+  height: calc(100% - 64px);
+  align-items: start;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const ModalContent = styled.li`
+  width: 100%;
+`;
+
+const ContentTitle = styled.h2`
+  font-size: ${props => props.theme.fontSize.FONT_H2};
+  line-height: 1.5em;
+  font-weight: bold;
+  color: ${props => props.theme.colors.TEXT_HIGH};
 `;
 
 const Button = styled.div`
@@ -154,7 +145,16 @@ const Button = styled.div`
   gap: 8px;
 `;
 
-const AgreeBox = styled.div`
+const TermWrap = styled.ul`
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: ${props => props.theme.fontSize.FONT_BODY2};
+  color: ${props => props.theme.colors.TEXT_HIGH};
+`;
+
+const AgreeBox = styled.li`
   align-items: center;
   display: flex;
   &:hover {
@@ -162,4 +162,10 @@ const AgreeBox = styled.div`
   }
   gap: 8px;
 `;
+
+const Term = styled.a`
+  text-decoration: underline;
+  color: ${props => props.theme.colors.TEXT_HIGH};
+`;
+
 export default LoginModalContents;
