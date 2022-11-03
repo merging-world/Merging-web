@@ -8,7 +8,11 @@ const CreatePost = () => {
   const { theme } = useDarkMode();
 
   return (
-    <Card onClick={() => console.log('hihi')}>
+    <Card
+      onClick={() => {
+        // TODO: 게시글 생성하는 모달을 띄워주세요!
+      }}
+    >
       <Wrap>
         <Profile info="profile" url="https://github.com/Park-Wonbin.png" />
         <CreatePostTitle theme={theme}>어떤 개발 이야기를 공유하고 싶나요?</CreatePostTitle>
