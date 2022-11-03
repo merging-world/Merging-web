@@ -130,7 +130,7 @@ const ContentTitle = styled.h2`
   color: ${props => props.theme.colors.TEXT_HIGH};
 `;
 
-const Button = styled.div`
+const Button = styled.button`
   width: 100%;
   height: 52px;
   border-radius: 14px;

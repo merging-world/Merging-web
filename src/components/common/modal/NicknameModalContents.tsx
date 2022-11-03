@@ -54,9 +54,12 @@ const NicknameModalContents = () => {
             {isSuccess ? '머징에 오신 것을 환영해요' : '닉네임을 알려주세요'}
           </ContentTitle>
           {!isSuccess && (
-            <NicknameInput theme={theme}>
-              <input placeholder="닉네임을 정확히 적어주세요" onChange={handleChange} />
-            </NicknameInput>
+            <NicknameInput
+              theme={theme}
+              placeholder="닉네임을 정확히 적어주세요"
+              onChange={handleChange}
+              maxLength={10}
+            />
           )}
         </ModalContent>
         <ModalContent>
@@ -125,7 +128,7 @@ const ContentTitle = styled.h2`
   color: ${props => props.theme.colors.TEXT_HIGH};
 `;
 
-const Button = styled.div`
+const Button = styled.button`
   width: 100%;
   height: 52px;
   border-radius: 14px;
@@ -140,23 +143,19 @@ const Button = styled.div`
   gap: 8px;
 `;
 
-const NicknameInput = styled.div`
-  width: 100%;
+const NicknameInput = styled.input`
+  width: calc(100% - 32px);
   height: 52px;
   border-radius: 15px;
   display: flex;
   align-items: center;
   background-color: ${props => props.theme.colors.GRAY_1};
   margin: 32px 0;
-  > input {
-    font-size: ${props => props.theme.fontSize.FONT_BODY1};
-    color: ${props => props.theme.colors.TEXT_MEDIUM};
-    outline: none;
-    width: 100%;
-    margin: 0 16px;
-    background: transparent;
-    border: none;
-  }
+  padding: 0 16px;
+  font-size: ${props => props.theme.fontSize.FONT_BODY1};
+  color: ${props => props.theme.colors.TEXT_MEDIUM};
+  outline: none;
+  border: none;
 `;
 
 const ErrorBox = styled.div`
