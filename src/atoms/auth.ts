@@ -27,11 +27,11 @@ const localStorageEffect =
   };
 
 export const authState = atom<IAuth>({
-  key: `authState`,
+  key: `auth`,
   default: {
     accessToken: null,
     isValid: false,
     user: null,
   },
-  effects: [localStorageEffect('authState')],
+  effects: [localStorageEffect('auth')],
 });

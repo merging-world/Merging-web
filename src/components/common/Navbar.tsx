@@ -1,72 +1,43 @@
 import styled from '@emotion/styled';
-import { signInWithPopup, GithubAuthProvider } from 'firebase/auth';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import {
   AlarmIcon,
   CommunityIcon,
-  GithubIcon,
   MarketIcon,
   PencilIcon,
   SearchIcon,
   SettingIcon,
 } from 'assets/icons';
-import { modalStates } from 'atoms';
 import { authState } from 'atoms/auth';
 import LoginModalContents from 'components/common/modal/LoginModalContents';
 import Modal from 'components/common/modal/Modal';
+import NicknameModalContents from 'components/common/modal/NicknameModalContents';
 import Profile from 'components/layouts/Profile';
-import { firebaseAuth } from 'constants/firebase';
 import { useDarkMode } from 'hooks/useDarkMode';
-import { checkAndRegister } from 'utils/apis';
 
 const Navbar = () => {
   const { theme, toggleTheme, isDarkMode } = useDarkMode();
   const [auth, setAuth] = useRecoilState(authState);
-  const [isModal, setIsModal] = useRecoilState(modalStates);
-
-  //TODO : Hook
-  const login = () => {
-    signInWithPopup(firebaseAuth, new GithubAuthProvider())
-      .then(async result => {
-        const { user } = result;
-        const accessToken = await user.getIdToken();
-        const res = await checkAndRegister(accessToken);
-        res.nickname
-          ? setAuth({
-              accessToken: accessToken,
-              isValid: true,
-              user: {
-                uuid: res.uuid,
-                nickname: res.nickname,
-                githubName: res.githubName,
-              },
-            })
-          : setAuth({
-              accessToken: accessToken,
-              isValid: false,
-              user: {
-                uuid: res.uuid,
-                nickname: null,
-                githubName: res.githubName,
-              },
-            });
-      })
-      .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
-  };
+  const [open, setOpen] = useState(false);
 
   return (
     <>
-      {isModal.status && (
+      {open && (
         <Modal>
-          <LoginModalContents clickBtn={login} />
+          <LoginModalContents
+            closed={() => {
+              setOpen(false);
+            }}
+          />
         </Modal>
       )}
-      {/* TODO : 로그인 모달 처리 */}
-      {auth.user != null && auth.user.nickname == null && <Modal>{/* 로그인모달 */}</Modal>}
+      {auth.user != null && auth.user.nickname == null && (
+        <Modal>
+          <NicknameModalContents />
+        </Modal>
+      )}
       <Container>
         <Wrap>
           <NavContentsLeft>
@@ -124,20 +95,19 @@ const Navbar = () => {
                 <IconButton>
                   <AlarmIcon color={theme.colors.GRAY_2} width={24} height={24} />
                 </IconButton>
-                <Profile
-                  info="profile"
-                  url={`https://github.com/${auth.user?.githubName}.png`}
-                  clickProfile={() => {
-                    console.log(auth.accessToken);
-                  }}
-                />
+                <Link to={'/profile'}>
+                  <Profile
+                    info="profile"
+                    url={`https://github.com/${auth.user?.githubName}.png`}
+                    clickProfile={() => {
+                      console.log(auth.accessToken);
+                    }}
+                  />
+                </Link>
               </>
             ) : (
               <>
-                <LoginButton
-                  theme={theme}
-                  onClick={() => setIsModal({ type: 'open', status: true })}
-                >
+                <LoginButton theme={theme} onClick={() => setOpen(true)}>
                   로그인
                 </LoginButton>
               </>

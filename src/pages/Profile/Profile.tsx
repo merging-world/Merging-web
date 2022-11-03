@@ -1,14 +1,14 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { authState } from '../../atoms/auth';
-import { CreatePost, Navbar } from 'components/common';
+import { Navbar } from 'components/common';
 import Container, { MainSection, Sections, SideSection } from 'components/layouts/Container';
-import PopularPosts from 'components/popularPost/PopularPosts';
-import PopularTags from 'components/popularTag/PopularTags';
-import PostCardContainer from 'components/postCard/PostCardContainer';
+import CommitCalendar from 'components/profile/CommitCalendar';
+import CommitCard from 'components/profile/CommitCard';
+import TreeCard from 'components/profile/TreeCard';
 import { useDarkMode } from 'hooks/useDarkMode';
 
-const Home = () => {
+const ProfilePage = () => {
   const { theme } = useDarkMode();
   const [auth, setAuth] = useRecoilState(authState);
 
@@ -17,13 +17,11 @@ const Home = () => {
       <Navbar />
       <Container>
         <Sections>
-          <MainSection theme={theme}>
-            {auth.isValid && <CreatePost />}
-            <PostCardContainer />
-          </MainSection>
+          <MainSection theme={theme}></MainSection>
           <SideSection theme={theme}>
-            <PopularPosts />
-            <PopularTags />
+            <TreeCard />
+            <CommitCard />
+            <CommitCalendar />
           </SideSection>
         </Sections>
         <div style={{ height: '100px' }}></div>
@@ -32,4 +30,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ProfilePage;

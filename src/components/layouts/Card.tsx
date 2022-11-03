@@ -4,12 +4,17 @@ import { useDarkMode } from 'hooks/useDarkMode';
 
 interface CardProps {
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
-const Card = ({ children }: CardProps) => {
+const Card = ({ children, onClick }: CardProps) => {
   const { theme } = useDarkMode();
 
-  return <Section theme={theme}>{children}</Section>;
+  return (
+    <Section theme={theme} onClick={onClick}>
+      {children}
+    </Section>
+  );
 };
 
 const Section = styled.section`
@@ -17,6 +22,9 @@ const Section = styled.section`
   border-radius: 20px;
   box-shadow: 0px 4px 26px ${props => props.theme.colors.SHADOW};
   padding: 20px 16px;
+  &:hover {
+    cursor: ${props => (props.onClick ? 'pointer' : 'default')};
+  }
 `;
 
 export default Card;

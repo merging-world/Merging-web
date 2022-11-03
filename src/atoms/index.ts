@@ -14,6 +14,11 @@ export const modalStates = atom({
   default: { type: 'closed', status: false },
 });
 
+export const checkBoxStates = atom({
+  key: `checkBoxState${uuid()}`,
+  default: { type: 'unchecked', status: false },
+});
+
 export const darkModeState = atom({
   key: `darkModeState${uuid()}`,
   default: {
