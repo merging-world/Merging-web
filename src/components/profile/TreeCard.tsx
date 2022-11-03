@@ -4,51 +4,10 @@ import { useRecoilState } from 'recoil';
 import { authState } from '../../atoms/auth';
 import Card from 'components/layouts/Card';
 import { useDarkMode } from 'hooks/useDarkMode';
+import { ISeason, IUserTree } from 'types/Tree';
 import { getCurrentSeason, getMyCurrentTree } from 'utils/apis';
 
-interface IUserTree {
-  uuid: string;
-  currentStep: string;
-  lifeTime: number;
-  commitCount: number;
-  tree: ITree | any;
-}
-
-interface ITree {
-  uuid: string;
-  seed?: IStep;
-  sprout?: IStep;
-  baby?: IStep;
-  adult?: IStep;
-  special?: IStep;
-}
-
-interface IStep {
-  good: Array<string>;
-  bad: Array<string>;
-  name: INation;
-}
-
-interface INation {
-  kr: string;
-}
-
-interface IGrowthStep {
-  sprout: number;
-  baby: number;
-  adult: number;
-  special: number;
-}
-
-interface ISeason {
-  id: number;
-  growthStep: IGrowthStep;
-  name: INation;
-  startDate: Date;
-  endDate: Date;
-}
-
-interface ITreeCardData {
+export interface ITreeCardData {
   isLoading: boolean;
   userTree: IUserTree | null;
   season: ISeason | null;
@@ -164,7 +123,7 @@ const TreeCard = () => {
   );
 };
 
-const Wrap = styled.div`
+const Wrap = styled.article`
   display: flex;
   justify-content: space-between;
 `;

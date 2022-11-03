@@ -52,26 +52,26 @@ const CommitCard = () => {
       <CardTitle theme={theme}>커밋 기록</CardTitle>
       <Wrap>
         <CommitInfo>
-          <img width="52px" src="/assets/icons/check.svg" />
-          <h3>{value.today}개</h3>
-          <p>오늘</p>
+          <InfoImage src="/assets/icons/check.svg" />
+          <InfoTitle theme={theme}>{value.today}개</InfoTitle>
+          <InfoDetail theme={theme}>오늘</InfoDetail>
         </CommitInfo>
         <CommitInfo>
-          <img width="52px" src="/assets/icons/calendar.svg" />
-          <h3>{value.week}개</h3>
-          <p>최근 7일</p>
+          <InfoImage src="/assets/icons/calendar.svg" />
+          <InfoTitle theme={theme}>{value.week}개</InfoTitle>
+          <InfoDetail theme={theme}>최근 7일</InfoDetail>
         </CommitInfo>
         <CommitInfo>
-          <img width="52px" src="/assets/icons/fire.svg" />
-          <h3>{value.continuedDays}일</h3>
-          <p>연속</p>
+          <InfoImage src="/assets/icons/fire.svg" />
+          <InfoTitle theme={theme}>{value.continuedDays}일</InfoTitle>
+          <InfoDetail theme={theme}>연속</InfoDetail>
         </CommitInfo>
       </Wrap>
     </Card>
   );
 };
 
-const Wrap = styled.div`
+const Wrap = styled.article`
   display: flex;
   justify-content: space-around;
 `;
@@ -82,19 +82,22 @@ const CommitInfo = styled.div`
   align-items: center;
   gap: 8px;
   margin: 8px 0;
-  > img {
-    width: 50px;
-    height: 50px;
-  }
-  > h3 {
-    font-weight: bold;
-    font-size: ${props => props.theme.fontSize.FONT_H3};
-    color: ${props => props.theme.colors.TEXT_HIGH};
-  }
-  > p {
-    font-size: ${props => props.theme.fontSize.FONT_BODY2};
-    color: ${props => props.theme.colors.TEXT_MEDIUM};
-  }
+`;
+
+const InfoImage = styled.img`
+  width: 50px;
+  height: 50px;
+`;
+
+const InfoTitle = styled.h3`
+  font-weight: bold;
+  font-size: ${props => props.theme.fontSize.FONT_H3};
+  color: ${props => props.theme.colors.TEXT_HIGH};
+`;
+
+const InfoDetail = styled.p`
+  font-size: ${props => props.theme.fontSize.FONT_BODY2};
+  color: ${props => props.theme.colors.TEXT_MEDIUM};
 `;
 
 export default CommitCard;
