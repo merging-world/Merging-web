@@ -7,9 +7,9 @@ const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
-  <RecoilRoot>
-    <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
+    <RecoilRoot>
       <App />
-    </QueryClientProvider>
-  </RecoilRoot>,
+    </RecoilRoot>
+  </QueryClientProvider>,
 );
