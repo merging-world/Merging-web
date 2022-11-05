@@ -45,7 +45,7 @@ const TreeCard = () => {
     switch (userTree.currentStep) {
       case 'seed':
         count = season.growthStep.sprout - userTree.commitCount;
-        percent = (count / season.growthStep.sprout) * 100;
+        percent = (userTree.commitCount / season.growthStep.sprout) * 100;
         break;
       case 'sprout':
         count = season.growthStep.baby - userTree.commitCount;
