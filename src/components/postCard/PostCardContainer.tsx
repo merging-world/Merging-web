@@ -12,9 +12,9 @@ const PostCardContainer = () => {
 
   return (
     <PostCardsWrap>
-      {/* {postCardList.map(data => (
+      {postCardList.map(data => (
         <PostCard data={data} key={data.uuid} />
-      ))} */}
+      ))}
     </PostCardsWrap>
   );
 };

@@ -30,3 +30,9 @@ export interface User {
   nickname: string;
   githubName: string;
 }
+
+export interface Icon {
+  color: string;
+  width?: number;
+  height?: number;
+}
