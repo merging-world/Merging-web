@@ -21,11 +21,12 @@ const PostCardWrap = styled.section`
   padding: 16px;
   border-radius: 20px;
   background-color: ${props => props.theme.colors.BACKGROUND_SECONDARY};
+  box-shadow: 0px 4px 26px ${props => props.theme.colors.SHADOW};
 `;
 
 const Image = styled.article`
   height: 300px;
-  border-radius: 20px;
+  border-radius: 5px;
   background-color: ${props => props.theme.colors.GRAY_2};
 `;
 
