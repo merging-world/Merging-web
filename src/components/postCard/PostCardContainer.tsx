@@ -1,14 +1,20 @@
 import styled from '@emotion/styled';
 // TODO : index 절대경로 추가
-import { PostCardDatas } from 'assets/mockData/MockData';
+import { useQuery } from 'react-query';
+// import { PostCardDatas } from 'assets/mockData/MockData';
 import PostCard from 'components/postCard/PostCard';
+import { getCommunity } from 'utils/apis';
+import { QueryKeys } from 'utils/queryClient';
 
 const PostCardContainer = () => {
+  const { data: postCardList } = useQuery(QueryKeys.COMMUNITY, getCommunity);
+  if (!postCardList) return <></>;
+
   return (
     <PostCardsWrap>
-      {PostCardDatas.map(data => (
-        <PostCard data={data} key={data.id} />
-      ))}
+      {/* {postCardList.map(data => (
+        <PostCard data={data} key={data.uuid} />
+      ))} */}
     </PostCardsWrap>
   );
 };

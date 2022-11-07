@@ -2,11 +2,11 @@ import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { authState } from '../atoms/auth';
 import { API_ENDPOINT } from 'constants/index';
-import { Component } from 'types/component';
+import { CommunityCard } from 'types/Community';
 // import { Template } from 'types/template';
 
-export const getComponents = async () => {
-  const response = await axios.get<Component[]>(`${API_ENDPOINT}/component`);
+export const getCommunity = async () => {
+  const response = await axios.get<CommunityCard[]>(`${API_ENDPOINT}/community`);
   const data = await response.data;
   return data;
 };

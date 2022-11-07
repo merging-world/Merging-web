@@ -6,7 +6,6 @@ import PostCardHeader from 'components/postCard/PostCardHeader';
 
 //TODO : data 구조 나오면 any types로 수정 예정
 const PostCard = ({ data }: any) => {
-  console.log('data', data);
   return (
     <PostCardWrap>
       <PostCardHeader author={data.author} createdAt={data.createdAt} url={data.link} />

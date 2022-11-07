@@ -21,7 +21,7 @@ export const getClient = (() => {
 })();
 
 export const QueryKeys = {
-  COMPONENTS: 'COMPONENTS',
+  COMMUNITY: 'COMMUNITY',
   TEMPLATES: 'TEMPLATES',
   TAGS: 'TAGS',
 };

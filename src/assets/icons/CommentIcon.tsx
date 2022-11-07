@@ -1,4 +1,4 @@
-import { Icon } from 'types/component';
+import { Icon } from 'types/Community';
 
 function CommentIcon(props: Icon) {
   const { width = 25, height = 25 } = props;

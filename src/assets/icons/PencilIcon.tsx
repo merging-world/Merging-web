@@ -1,4 +1,4 @@
-import { Icon } from 'types/component';
+import { Icon } from 'types/Community';
 
 function PencilIcon(props: Icon) {
   const { width = 25, height = 25 } = props;

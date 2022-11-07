@@ -11,7 +11,7 @@ interface PostCardHeaderProps {
 
 const PostCardHeader = ({ author, createdAt, url }: PostCardHeaderProps) => {
   const { theme } = useDarkMode();
-  console.log('url', url);
+
   return (
     <Wrap>
       <ProfileWrap>
