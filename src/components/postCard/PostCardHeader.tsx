@@ -6,17 +6,17 @@ import { useDarkMode } from 'hooks/useDarkMode';
 interface PostCardHeaderProps {
   author: string;
   createdAt: string;
-  url: string;
+  profile: string;
 }
 
-const PostCardHeader = ({ author, createdAt, url }: PostCardHeaderProps) => {
+const PostCardHeader = ({ author, createdAt, profile }: PostCardHeaderProps) => {
   const { theme } = useDarkMode();
-  console.log('url', url);
+
   return (
     <Wrap>
       <ProfileWrap>
         <li>
-          <Profile info="profile" url={url} />
+          <Profile info="profile" url={`https://github.com/${profile}.png`} />
         </li>
         <ProfileTextWrap>
           <Nickname>{author}</Nickname>
