@@ -14,7 +14,7 @@ const PostCardImage = ({ imageList }: PostCardImageProps) => {
       {/* <Carousel> */}
       {imageList.url.map((url, i) => (
         <>
-          <img src={url} alt="게시글 이미지입니다." key={i} />
+          <ContentImage src={url} alt="게시글 이미지입니다." key={i} />
           {/* <Button className="CheckButton">Check it out!</Button> */}
         </>
       ))}
@@ -25,6 +25,10 @@ const PostCardImage = ({ imageList }: PostCardImageProps) => {
 
 const Wrap = styled.article`
   /* max-height: 439px; */
+`;
+
+const ContentImage = styled.img`
+  width: 100%;
 `;
 
 export default PostCardImage;
