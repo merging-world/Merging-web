@@ -1,4 +1,4 @@
-import { Icon } from 'types/Community';
+import { Icon } from 'types/Icon';
 
 function SearchIcon(props: Icon) {
   const { width = 25, height = 25 } = props;
