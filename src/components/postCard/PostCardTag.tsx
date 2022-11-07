@@ -7,7 +7,6 @@ interface PostCardTagProps {
 }
 
 const PostCardTag = ({ tags }: PostCardTagProps) => {
-  console.log('tags', tags);
   return (
     <WrapTags>
       {tags.map(item => (

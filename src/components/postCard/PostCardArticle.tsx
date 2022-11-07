@@ -9,7 +9,6 @@ interface PostCardArticleProps {
 }
 
 const PostCardArticle = ({ title, description, tags }: PostCardArticleProps) => {
-  console.log('tags', tags);
   return (
     <Wrap>
       <Title>{title}</Title>
