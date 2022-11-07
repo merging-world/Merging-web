@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from 'pages/Home/Home';
+import LandingPage from 'pages/Landing/Landing';
 import ProfilePage from 'pages/Profile/Profile';
 import Shop from 'pages/Shop/Shop';
 
@@ -10,6 +11,7 @@ function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/intro" element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   );
