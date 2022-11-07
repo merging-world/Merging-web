@@ -2,17 +2,17 @@ export interface CommunityCard {
   commentCount: number;
   content: string;
   createdAt: string;
-  image: Image[];
+  image: Image;
   isLiked: boolean;
   isScraped: boolean;
   likeCount: number;
   scrapCount: number;
   status: string;
-  tags: Tag[];
+  tags: Array<Tag>;
   title: string;
   type: string;
   updatedAt: string;
-  user: string;
+  user: User;
   userUuid: string;
   uuid: string;
 }

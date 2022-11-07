@@ -3,15 +3,24 @@ import styled from '@emotion/styled';
 import PostCardToolBar from './PostCardToolBar';
 import PostCardArticle from 'components/postCard/PostCardArticle';
 import PostCardHeader from 'components/postCard/PostCardHeader';
+import PostCardImage from 'components/postCard/PostCardImage';
+import { CommunityCard } from 'types/Community';
 
+interface PostCardProps {
+  data: CommunityCard;
+}
 //TODO : data 구조 나오면 any types로 수정 예정
-const PostCard = ({ data }: any) => {
+const PostCard = ({ data }: PostCardProps) => {
   return (
     <PostCardWrap>
-      <PostCardHeader author={data.author} createdAt={data.createdAt} url={data.link} />
-      <PostCardArticle title={data.title} description={data.description} tags={data.tags} />
-      <Image />
-      <PostCardToolBar like={data.like} comments={data.comments} />
+      <PostCardHeader
+        author={data.user.nickname}
+        profile={data.user.githubName}
+        createdAt={data.createdAt}
+      />
+      <PostCardArticle title={data.title} description={data.content} tags={data.tags} />
+      <PostCardImage imageList={data.image} />
+      <PostCardToolBar like={data.likeCount} comments={data.commentCount} />
     </PostCardWrap>
   );
 };
@@ -21,12 +30,6 @@ const PostCardWrap = styled.section`
   border-radius: 20px;
   background-color: ${props => props.theme.colors.BACKGROUND_SECONDARY};
   box-shadow: 0px 4px 26px ${props => props.theme.colors.SHADOW};
-`;
-
-const Image = styled.article`
-  height: 300px;
-  border-radius: 5px;
-  background-color: ${props => props.theme.colors.GRAY_2};
 `;
 
 export default PostCard;

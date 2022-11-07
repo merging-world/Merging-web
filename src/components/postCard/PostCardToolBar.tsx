@@ -17,13 +17,13 @@ const PostCardToolBar = ({ like, comments }: PostCardToolBarProps) => {
           <li>
             <HeartIcon color={theme.colors.ALERT} />
           </li>
-          <li>{like}</li>
+          <CountNum>{like}</CountNum>
         </HeartWrap>
         <CommentWrap>
           <li>
             <CommentIcon color={theme.colors.GRAY_2} />
           </li>
-          <li>{comments}</li>
+          <CountNum>{comments}</CountNum>
         </CommentWrap>
       </IconWrap>
       <li>
@@ -57,6 +57,11 @@ const CommentWrap = styled.ul`
   display: flex;
   align-items: center;
   gap: 4px;
+`;
+
+const CountNum = styled.li`
+  font-size: ${props => props.theme.fontSize.FONT_BODY2};
+  color: ${props => props.theme.colors.TEXT_MEDIUM};
 `;
 
 export default PostCardToolBar;

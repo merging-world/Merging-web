@@ -1,13 +1,15 @@
 import styled from '@emotion/styled';
 import PostCardTag from 'components/postCard/PostCardTag';
+import { Tag } from 'types/Community';
 
 interface PostCardArticleProps {
   title: string;
   description: string;
-  tags: [string];
+  tags: Array<Tag>;
 }
 
 const PostCardArticle = ({ title, description, tags }: PostCardArticleProps) => {
+  console.log('tags', tags);
   return (
     <Wrap>
       <Title>{title}</Title>

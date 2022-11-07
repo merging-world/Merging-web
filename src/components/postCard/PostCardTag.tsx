@@ -1,15 +1,17 @@
 import styled from '@emotion/styled';
 import { v4 as uuid } from 'uuid';
+import { Tag } from 'types/Community';
 
 interface PostCardTagProps {
-  tags: [string];
+  tags: Array<Tag>;
 }
 
 const PostCardTag = ({ tags }: PostCardTagProps) => {
+  console.log('tags', tags);
   return (
     <WrapTags>
       {tags.map(item => (
-        <Tag key={`${uuid()}`}>{item}</Tag>
+        <Item key={`${uuid()}`}>{item.name}</Item>
       ))}
     </WrapTags>
   );
@@ -20,7 +22,7 @@ const WrapTags = styled.ul`
   gap: 8px;
 `;
 
-const Tag = styled.li`
+const Item = styled.li`
   padding: 4px 8px;
   border-radius: 20px;
   font-size: ${props => props.theme.fontSize.FONT_BODY3};
