@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { authState } from '../../atoms/auth';
 import Card from 'components/layouts/Card';
 import { useDarkMode } from 'hooks/useDarkMode';
-import { ISeason, IUserTree } from 'types/Tree';
+import { ISeason, IUserTree, stepName } from 'types/Tree';
 import { getCurrentSeason, getMyCurrentTree } from 'utils/apis';
 
 export interface ITreeCardData {
@@ -25,14 +25,6 @@ const TreeCard = () => {
     percent: 0,
     count: 0,
   });
-
-  const stepName = {
-    seed: '씨앗',
-    sprout: '새싹',
-    baby: '아기나무',
-    adult: '어른나무',
-    special: '스페셜나무',
-  } as any;
 
   async function getData() {
     const season = await getCurrentSeason();
@@ -168,6 +160,6 @@ const GrowBox = styled.div`
 
 const GrowText = styled.p`
   font-size: ${props => props.theme.fontSize.FONT_BODY1};
-  color: ${props => props.theme.colors.TEXT_MEDIUM};
+  color: ${props => props.theme.colors.TEXT_HIGH};
 `;
 export default TreeCard;

@@ -81,7 +81,7 @@ const LoginModalContents = ({ closed }: LoginModalContentsProps) => {
               />
               <p>이용약관 및 개인정보처리방침 동의</p>
             </AgreeBox>
-            <Term theme={theme} href="https://poapper.com">
+            <Term theme={theme} href="https://api.merging.world/terms">
               보기
             </Term>
           </TermWrap>

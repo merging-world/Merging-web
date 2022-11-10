@@ -5,6 +5,7 @@ import { Navbar } from 'components/common';
 import Container, { MainSection, Sections, SideSection } from 'components/layouts/Container';
 import CommitCalendar from 'components/profile/CommitCalendar';
 import CommitCard from 'components/profile/CommitCard';
+import RankCard from 'components/profile/RankCard';
 import TreeCard from 'components/profile/TreeCard';
 import { useDarkMode } from 'hooks/useDarkMode';
 
@@ -22,6 +23,7 @@ const ProfilePage = () => {
             <TreeCard />
             <CommitCard />
             <CommitCalendar />
+            <RankCard />
           </SideSection>
         </Sections>
         <div style={{ height: '100px' }}></div>

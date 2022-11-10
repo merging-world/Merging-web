@@ -39,3 +39,11 @@ export interface ISeason {
   startDate: Date;
   endDate: Date;
 }
+
+export const stepName = {
+  seed: '씨앗',
+  sprout: '새싹',
+  baby: '아기나무',
+  adult: '어른나무',
+  special: '스페셜나무',
+} as any;

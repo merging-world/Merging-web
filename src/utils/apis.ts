@@ -110,3 +110,42 @@ export const getCommits = async (token: string) => {
     console.log(e);
   }
 };
+
+export const getRank = async (token: string) => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/friend/rank`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const postInteraction = async (
+  token: string,
+  type: string,
+  userUuid: string,
+  treeUuid: string,
+) => {
+  try {
+    const res = await axios.post(
+      `${API_ENDPOINT}/friend/interaction`,
+      {
+        type: type,
+        userUuid: userUuid,
+        treeUuid: treeUuid,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
