@@ -7,6 +7,7 @@ import CommitCalendar from 'components/profile/CommitCalendar';
 import CommitCard from 'components/profile/CommitCard';
 import RankCard from 'components/profile/RankCard';
 import TreeCard from 'components/profile/TreeCard';
+import { firebaseAuth } from 'constants/firebase';
 import { useDarkMode } from 'hooks/useDarkMode';
 
 const ProfilePage = () => {
@@ -18,7 +19,21 @@ const ProfilePage = () => {
       <Navbar />
       <Container>
         <Sections>
-          <MainSection theme={theme}></MainSection>
+          <MainSection theme={theme}>
+            <button
+              onClick={() => {
+                firebaseAuth.signOut().then(() => {
+                  setAuth({
+                    accessToken: null,
+                    isValid: false,
+                    user: null,
+                  });
+                });
+              }}
+            >
+              로그아웃 테스트
+            </button>
+          </MainSection>
           <SideSection theme={theme}>
             <TreeCard />
             <CommitCard />
