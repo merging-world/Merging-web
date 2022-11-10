@@ -1,25 +1,24 @@
 import styled from '@emotion/styled';
 import { useDarkMode } from 'hooks/useDarkMode';
 
-export interface ITag {
-  // TODO: 나중에 API 연결하면서 바꿀 예정 + type으로 옮기기
-  idx: number;
+export interface IPopularTag {
   name: string;
-  count: number;
+  postCount: number;
 }
 
 interface TagContentProps {
-  tag: ITag;
+  idx: number;
+  tag: IPopularTag;
 }
 
-const TagContent = ({ tag }: TagContentProps) => {
+const TagContent = ({ tag, idx }: TagContentProps) => {
   const { theme } = useDarkMode();
 
   return (
     <TagContentWrap>
-      <Idx theme={theme}>{tag.idx}</Idx>
+      <Idx theme={theme}>{idx}</Idx>
       <Tag># {tag.name}</Tag>
-      <Count>{tag.count} 게시물</Count>
+      <Count>{tag.postCount} 게시물</Count>
     </TagContentWrap>
   );
 };

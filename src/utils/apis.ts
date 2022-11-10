@@ -149,3 +149,21 @@ export const postInteraction = async (
     console.log(e);
   }
 };
+
+export const getPopularTags = async () => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/community/popular/tag`, {});
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getPopularPosts = async () => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/community/popular?take=5&skip=0`, {});
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};

@@ -1,23 +1,24 @@
+import { useEffect, useState } from 'react';
 import SideCard from 'components/layouts/SideCard';
-import PostContent, { IPost } from 'components/popularPost/PostContent';
-
-// TODO: API 연동
-const sampleDate = [
-  {
-    title: '게시물 제목 없는경우 내용 앞부분 1줄 넘으면...',
-    createdAt: new Date(),
-    likeCount: 0,
-    commentCount: 0,
-  },
-  { title: 'hihi', createdAt: new Date(), likeCount: 0, commentCount: 0 },
-  { title: 'hihi', createdAt: new Date(), likeCount: 0, commentCount: 0 },
-];
+import PostContent from 'components/popularPost/PostContent';
+import { CommunityCard } from 'types/Community';
+import { getPopularPosts } from 'utils/apis';
 
 const PopularPosts = () => {
+  const [posts, setPosts] = useState<Array<CommunityCard>>([]);
+
+  async function getData() {
+    setPosts(await getPopularPosts());
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <SideCard title="실시간 인기 게시글" imgSrc="/assets/icons/fire.svg">
-      {sampleDate.map((data, idx) => (
-        <PostContent post={data as IPost} key={idx} />
+      {posts.map((data, idx) => (
+        <PostContent post={data} key={idx} />
       ))}
     </SideCard>
   );

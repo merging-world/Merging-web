@@ -31,7 +31,7 @@ export const SideSection = styled.aside`
   flex-direction: column;
   flex-grow: 4;
   max-width: 360px;
-  min-width: 260px;
+  min-width: 280px;
   gap: 16px;
   ${props => props.theme.breakPoint.small} {
     display: none;

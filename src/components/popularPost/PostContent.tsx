@@ -1,17 +1,11 @@
 import styled from '@emotion/styled';
+import moment from 'moment';
 import { CommentIcon, HeartIcon } from 'assets/icons';
 import { useDarkMode } from 'hooks/useDarkMode';
-
-export interface IPost {
-  // TODO: 나중에 API 연결하면서 바꿀 예정 + type으로 옮기기
-  title: string;
-  createdAt: Date;
-  likeCount: number;
-  commentCount: number;
-}
+import { CommunityCard } from 'types/Community';
 
 interface PostContentProps {
-  post: IPost;
+  post: CommunityCard;
 }
 
 const PostContent = ({ post }: PostContentProps) => {
@@ -21,7 +15,7 @@ const PostContent = ({ post }: PostContentProps) => {
     <PostContentWrap>
       <PostContentTitle>{post.title}</PostContentTitle>
       <InfoWrap>
-        <TimeText>{post.createdAt.toDateString()}</TimeText>
+        <TimeText>{moment(post.createdAt).format('MM/DD HH:mm')}</TimeText>
         <IconWrap>
           <HeartIcon width={16} height={16} color={theme.colors.GRAY_2} />
           <span>{post.likeCount}</span>
