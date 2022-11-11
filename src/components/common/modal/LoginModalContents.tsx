@@ -31,6 +31,7 @@ const LoginModalContents = ({ closed }: LoginModalContentsProps) => {
                 uuid: res.uuid,
                 nickname: res.nickname,
                 githubName: res.githubName,
+                intro: res.intro,
               },
             })
           : setAuth({
@@ -40,6 +41,7 @@ const LoginModalContents = ({ closed }: LoginModalContentsProps) => {
                 uuid: res.uuid,
                 nickname: null,
                 githubName: res.githubName,
+                intro: res.intro,
               },
             });
         closed();

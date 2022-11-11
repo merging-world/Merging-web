@@ -8,7 +8,7 @@ const Container = ({ children }: ContainerProps) => {
   return <ContainerPadding>{children}</ContainerPadding>;
 };
 
-const ContainerPadding = styled.div`
+export const ContainerPadding = styled.div`
   margin: 86px auto 0 auto;
   max-width: 1040px;
 `;

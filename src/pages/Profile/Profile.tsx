@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { authState } from '../../atoms/auth';
+import { authState } from 'atoms/auth';
 import { Navbar } from 'components/common';
 import Container, { MainSection, Sections, SideSection } from 'components/layouts/Container';
 import CommitCalendar from 'components/profile/CommitCalendar';
 import CommitCard from 'components/profile/CommitCard';
+import ProfileCard from 'components/profile/ProfileCard';
 import RankCard from 'components/profile/RankCard';
 import TreeCard from 'components/profile/TreeCard';
 import { firebaseAuth } from 'constants/firebase';
@@ -20,6 +21,7 @@ const ProfilePage = () => {
       <Container>
         <Sections>
           <MainSection theme={theme}>
+            <ProfileCard />
             <button
               onClick={() => {
                 firebaseAuth.signOut().then(() => {

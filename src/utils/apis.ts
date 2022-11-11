@@ -167,3 +167,64 @@ export const getPopularPosts = async () => {
     console.log(e);
   }
 };
+
+export const getTreeBook = async (token: string) => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/tree/book`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getFriend = async (token: string) => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/friend`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getUserPostsCount = async (userUuid: string) => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/community/user/${userUuid}/count`);
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getNotifications = async (token: string) => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/notification`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getNotificationsCount = async (token: string) => {
+  try {
+    const res = await axios.get(`${API_ENDPOINT}/notification/unread`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};

@@ -36,6 +36,7 @@ function App() {
               uuid: res.uuid,
               nickname: res.nickname,
               githubName: res.githubName,
+              intro: res.index,
             },
           })
         : setAuth({
@@ -45,6 +46,7 @@ function App() {
               uuid: res.uuid,
               nickname: null,
               githubName: res.githubName,
+              intro: res.intro,
             },
           });
     });

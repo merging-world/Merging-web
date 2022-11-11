@@ -36,7 +36,7 @@ export const lightTheme: ColorTheme = {
   GRAY_4: '#878C8A',
   GRAY_5: '#464949',
   SHADOW: '#B0D6B333',
-  SHADOW_SECONDARY: '#B0D6B333',
+  SHADOW_SECONDARY: '#B0D6B355',
   PASTEL_GREEN: '#C6E1B4',
 };
 
