@@ -1,3 +1,4 @@
+import { css } from '@emotion/css';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
@@ -70,7 +71,10 @@ const Wrap = styled.div`
   align-items: center;
 `;
 
-const Box = styled(Wrap)`
+const Box = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
   justify-content: space-between;
 `;
 
@@ -107,7 +111,10 @@ const Button = styled.button`
   }
 `;
 
-const SummaryBox = styled(Box)`
+const SummaryBox = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
   justify-content: space-around;
   margin-top: 24px;
 `;

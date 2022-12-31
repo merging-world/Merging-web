@@ -50,7 +50,7 @@ const MyContentWrap = styled.article`
   box-shadow: 0 0 26px ${props => props.theme.colors.SHADOW_SECONDARY};
   border-radius: 10px;
   padding: 10px 12px;
-  margin: 16px -4px -4px -4px;
+  margin: 16px -4px -4px;
 `;
 
 export default RankContent;
