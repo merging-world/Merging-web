@@ -6,7 +6,7 @@ import { authState } from 'atoms/auth';
 import { IFriend } from 'components/profile/RankContent';
 import { useDarkMode } from 'hooks/useDarkMode';
 import { IInteraction } from 'types/Friend';
-import './Animation.css';
+import 'styles/Animation.css';
 import 'styles/Keyframes.css';
 import { postInteraction } from 'utils/apis';
 
@@ -134,7 +134,7 @@ const DetailTitle = styled.p`
   color: ${props => props.theme.colors.TEXT_HIGH};
 `;
 
-const DetailContent = styled.h2`
+const DetailContent = styled.h3`
   font-size: ${props => props.theme.fontSize.FONT_H2};
   color: ${props => props.theme.colors.TEXT_HIGH};
   font-weight: bold;

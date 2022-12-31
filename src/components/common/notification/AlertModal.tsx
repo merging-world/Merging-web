@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { authState } from 'atoms/auth';
 import AlertContent from 'components/common/notification/AlertContent';
+import { MEDIA_QUERY_END_POINT } from 'constants/index';
 import { useDarkMode } from 'hooks/useDarkMode';
 import { INotification } from 'types/Notification';
 import { getNotifications } from 'utils/apis';
@@ -45,7 +46,7 @@ const AlertLayout = styled.section`
 
 const AlertPadding = styled.div`
   margin: 0 auto;
-  max-width: 1040px;
+  max-width: ${MEDIA_QUERY_END_POINT.MEDIUM};
   display: flex;
   justify-content: right;
 `;
@@ -62,7 +63,7 @@ const Wrap = styled.div`
   overflow: hidden;
 `;
 
-const Title = styled.h2`
+const Title = styled.h3`
   font-size: ${props => props.theme.fontSize.FONT_H2};
   color: ${props => props.theme.colors.TEXT_HIGH};
   font-weight: bold;

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import { MEDIA_QUERY_END_POINT } from 'constants/index';
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -8,9 +9,9 @@ const Container = ({ children }: ContainerProps) => {
   return <ContainerPadding>{children}</ContainerPadding>;
 };
 
-export const ContainerPadding = styled.div`
-  margin: 86px auto 0 auto;
-  max-width: 1040px;
+const ContainerPadding = styled.div`
+  margin: 86px auto 0;
+  max-width: ${MEDIA_QUERY_END_POINT.MEDIUM};
 `;
 
 export const Sections = styled.div`
