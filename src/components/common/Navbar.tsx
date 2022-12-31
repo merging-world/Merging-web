@@ -34,6 +34,10 @@ const Navbar = () => {
     getData();
   }, []);
 
+  const notificationIconClicked = () => {
+    setNotification({ open: !notification.open, unread: 0 });
+  };
+
   return (
     <>
       {open && (
@@ -105,9 +109,7 @@ const Navbar = () => {
                 <IconButton>
                   <PencilIcon color={theme.colors.GRAY_2} width={24} height={24} />
                 </IconButton>
-                <IconButton
-                  onClick={() => setNotification({ open: !notification.open, unread: 0 })}
-                >
+                <IconButton onClick={notificationIconClicked}>
                   {notification.unread > 0 ? (
                     <AlarmNewIcon color={theme.colors.GRAY_2} width={24} height={24} />
                   ) : (
