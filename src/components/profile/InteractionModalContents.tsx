@@ -7,7 +7,7 @@ import { IFriend } from 'components/profile/RankContent';
 import { useDarkMode } from 'hooks/useDarkMode';
 import { IInteraction } from 'types/Friend';
 import './Animation.css';
-import './Keyframes.css';
+import 'styles/Keyframes.css';
 import { postInteraction } from 'utils/apis';
 
 interface InteractionModalContentsProps {
