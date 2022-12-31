@@ -50,7 +50,7 @@ const AlertPadding = styled.div`
   justify-content: right;
 `;
 
-const Wrap = styled.ul`
+const Wrap = styled.div`
   width: 100%;
   max-width: 360px;
   ${props => props.theme.breakPoint.small} {
@@ -69,7 +69,7 @@ const Title = styled.h2`
   padding: 20px 20px;
 `;
 
-const ScrollArea = styled.div`
+const ScrollArea = styled.ul`
   max-height: 500px;
   overflow-y: auto;
   scrollbar-width: none;

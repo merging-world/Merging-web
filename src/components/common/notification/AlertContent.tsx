@@ -32,7 +32,7 @@ const AlertContent = ({ notification }: AlertContentProps) => {
   );
 };
 
-const Box = styled.article`
+const Box = styled.li`
   display: flex;
   flex-direction: column;
   gap: 8px;
