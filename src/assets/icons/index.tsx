@@ -11,3 +11,8 @@ export { default as SettingIcon } from './SettingIcon';
 export { default as CheckRectangleIcon } from './CheckRectangleIcon';
 export { default as InformationIcon } from './InformationIcon';
 export { default as ImageIcon } from './ImageIcon';
+export { default as InstagramIcon } from './InstagramIcon';
+export { default as AppleIcon } from './AppleIcon';
+export { default as FacebookIcon } from './FacebookIcon';
+export { default as TwitterIcon } from './TwitterIcon';
+export { default as GooglePlayIcon } from './GooglePlayIcon';
