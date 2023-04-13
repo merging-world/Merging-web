@@ -21,7 +21,7 @@ const Section = styled.section`
   background-color: ${props => props.theme.colors.BACKGROUND_SECONDARY};
   border-radius: 20px;
   box-shadow: 0px 4px 26px ${props => props.theme.colors.SHADOW};
-  padding: 20px 16px;
+  padding: 20px 20px;
   &:hover {
     cursor: ${props => (props.onClick ? 'pointer' : 'default')};
   }

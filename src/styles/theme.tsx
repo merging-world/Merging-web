@@ -15,6 +15,8 @@ export const darkTheme = {
   GRAY_4: '#BABFC0',
   GRAY_5: '#EFEFEF',
   SHADOW: '#272C2866',
+  SHADOW_SECONDARY: '#161817B3',
+  PASTEL_GREEN: '#A7CC8D',
 };
 
 export type ColorTheme = typeof darkTheme;
@@ -34,6 +36,8 @@ export const lightTheme: ColorTheme = {
   GRAY_4: '#878C8A',
   GRAY_5: '#464949',
   SHADOW: '#B0D6B333',
+  SHADOW_SECONDARY: '#B0D6B355',
+  PASTEL_GREEN: '#C6E1B4',
 };
 
 export type Theme = typeof lightTheme;

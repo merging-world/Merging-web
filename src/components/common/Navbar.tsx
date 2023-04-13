@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import {
@@ -10,17 +10,33 @@ import {
   SearchIcon,
   SettingIcon,
 } from 'assets/icons';
+import AlarmNewIcon from 'assets/icons/AlarmNewIcon';
 import { authState } from 'atoms/auth';
 import LoginModalContents from 'components/common/modal/LoginModalContents';
 import Modal from 'components/common/modal/Modal';
 import NicknameModalContents from 'components/common/modal/NicknameModalContents';
+import AlertModal from 'components/common/notification/AlertModal';
 import Profile from 'components/layouts/Profile';
 import { useDarkMode } from 'hooks/useDarkMode';
+import { getNotificationsCount } from 'utils/apis';
 
 const Navbar = () => {
   const { theme, toggleTheme, isDarkMode } = useDarkMode();
   const [auth, setAuth] = useRecoilState(authState);
   const [open, setOpen] = useState(false);
+  const [notification, setNotification] = useState({ open: false, unread: 0 });
+
+  const getData = async () => {
+    setNotification({ open: false, unread: await getNotificationsCount(auth.accessToken ?? '') });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const notificationIconClicked = () => {
+    setNotification({ open: !notification.open, unread: 0 });
+  };
 
   return (
     <>
@@ -38,6 +54,7 @@ const Navbar = () => {
           <NicknameModalContents />
         </Modal>
       )}
+      {notification.open && <AlertModal />}
       <Container>
         <Wrap>
           <NavContentsLeft>
@@ -92,8 +109,12 @@ const Navbar = () => {
                 <IconButton>
                   <PencilIcon color={theme.colors.GRAY_2} width={24} height={24} />
                 </IconButton>
-                <IconButton>
-                  <AlarmIcon color={theme.colors.GRAY_2} width={24} height={24} />
+                <IconButton onClick={notificationIconClicked}>
+                  {notification.unread > 0 ? (
+                    <AlarmNewIcon color={theme.colors.GRAY_2} width={24} height={24} />
+                  ) : (
+                    <AlarmIcon color={theme.colors.GRAY_2} width={24} height={24} />
+                  )}
                 </IconButton>
                 <Link to={'/profile'}>
                   <Profile

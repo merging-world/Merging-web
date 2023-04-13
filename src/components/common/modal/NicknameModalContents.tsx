@@ -86,6 +86,7 @@ const NicknameModalContents = () => {
                     uuid: auth.user!.uuid,
                     githubName: auth.user!.githubName,
                     nickname: nickname.trim(),
+                    intro: auth.user!.intro,
                   },
                 });
               } else registerNickname();

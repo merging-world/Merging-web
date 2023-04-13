@@ -4,6 +4,7 @@ export interface IUser {
   uuid: string | null;
   nickname: string | null;
   githubName: string | null;
+  intro?: string | null;
 }
 
 export interface IAuth {

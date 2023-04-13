@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import { MEDIA_QUERY_END_POINT } from 'constants/index';
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -9,8 +10,8 @@ const Container = ({ children }: ContainerProps) => {
 };
 
 const ContainerPadding = styled.div`
-  margin: 86px auto 0 auto;
-  max-width: 1040px;
+  margin: 86px auto 0;
+  max-width: ${MEDIA_QUERY_END_POINT.MEDIUM};
 `;
 
 export const Sections = styled.div`
@@ -31,7 +32,7 @@ export const SideSection = styled.aside`
   flex-direction: column;
   flex-grow: 4;
   max-width: 360px;
-  min-width: 260px;
+  min-width: 280px;
   gap: 16px;
   ${props => props.theme.breakPoint.small} {
     display: none;
